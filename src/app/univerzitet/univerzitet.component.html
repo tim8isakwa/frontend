@@ -1,0 +1,44 @@
+<app-header
+  [title]="'O Univerzitetu'"
+  [subtitle]="'Savremeno obrazovanje za buduće lidere'"
+  [backgroundUrl]="'/assets/images/bkg1.jpg'"></app-header>
+
+<section class="Podaci" *ngIf="univerzitet">
+    <div class="container">
+    <h2 class="title is-3">Dobrodošli na Univerzitet</h2>
+        <div class="content">
+            <p>{{univerzitet.opis}}</p>
+        </div>
+    
+        <h3 class="title is-4 mt-5">Fakulteti i studijski programi</h3>
+        <div *ngIf="univerzitet.fakulteti && univerzitet.fakulteti.length > 0"> 
+            <ul>
+                <li *ngFor="let fakultet of univerzitet.fakulteti">
+                    <strong>{{ fakultet.naziv }}</strong>
+                    <div *ngIf="fakultet.programi && fakultet.programi.length > 0">
+                        <ul>
+                            <li *ngFor="let program of fakultet.programi">
+                                {{ program.naziv }}
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+    </div>
+
+    <hr class="my-6">
+
+    <h3 class="title is-4 mt-5">Informacije</h3>
+    <p>
+        <strong>Lokacija: </strong>
+        <span *ngIf="univerzitet.adresa">
+            {{ univerzitet.adresa.ulica }} {{ univerzitet.adresa.broj }},
+            {{ univerzitet.adresa.mesto }}, {{ univerzitet.adresa.drzava }}
+        </span>
+    </p>
+
+    <div class="buttons mt-5">
+      <button class="button is-link" routerLink="/homepage">Nazad na početnu</button>
+    </div>
+</div>
+</section>

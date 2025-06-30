@@ -1,0 +1,76 @@
+<div class="registracija-container">
+  <form [formGroup]="korisnikForm">
+
+    <div class="form-group">
+      <label for="korisnickoIme">Korisničko ime</label>
+      <input 
+        type="text"
+        id="korisnickoIme"
+        formControlName="korisnickoIme"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('korisnickoIme')}">
+      <div *ngIf="isInvalid('korisnickoIme')" class="invalid-feedback">
+        <div *ngIf="korisnikForm.get('korisnickoIme')?.errors?.['required']">
+          Korisničko ime je obavezno
+        </div>
+        <div *ngIf="korisnikForm.get('korisnickoIme')?.errors?.['minlength']">
+          Korisničko ime mora imati najmanje 3 karaktera
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email adresa</label>
+      <input 
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('email')}">
+      <div *ngIf="isInvalid('email')" class="invalid-feedback">
+        <div *ngIf="korisnikForm.get('email')?.errors?.['required']">
+          Email adresa je obavezna
+        </div>
+        <div *ngIf="korisnikForm.get('email')?.errors?.['email']">
+          Unesite validnu email adresu
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lozinka">Lozinka</label>
+      <input 
+        type="password"
+        id="lozinka"
+        formControlName="lozinka"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('lozinka')}">
+      <div *ngIf="isInvalid('lozinka')" class="invalid-feedback">
+        <div *ngIf="korisnikForm.get('lozinka')?.errors?.['required']">
+          Lozinka je obavezna
+        </div>
+        <div *ngIf="korisnikForm.get('lozinka')?.errors?.['minlength']">
+          Lozinka mora imati najmanje 6 karaktera
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="potvrdaLozinke">Potvrda lozinke</label>
+      <input 
+        type="password"
+        id="potvrdaLozinke"
+        formControlName="potvrdaLozinke"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('potvrdaLozinke')}">
+      <div *ngIf="isInvalid('potvrdaLozinke')" class="invalid-feedback">
+        <div *ngIf="korisnikForm.get('potvrdaLozinke')?.errors?.['required']">
+          Potvrda lozinke je obavezna
+        </div>
+        <div *ngIf="korisnikForm.hasError('lozinkeSeNePodudaraju', ['potvrdaLozinke'])">
+          Lozinke se ne podudaraju
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

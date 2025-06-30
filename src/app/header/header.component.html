@@ -1,0 +1,84 @@
+<section 
+  class="hero is-info is-large"
+  [ngStyle]="{
+    'background-image': 'url(' + backgroundUrl + ')',
+    'background-size': 'cover',
+    'background-position': 'center center'
+  }">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <span class="navbar-burger" data-target="navbarMenuHeroB">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item is-active"  routerLink="/homepage"> 
+              <span class="icon">
+                <i class="fa-solid fa-house"></i>
+              </span>
+              Home 
+            </a>
+            <a class="navbar-item" routerLink="/izmeni" *ngIf="jePrijavljen"> 
+             <span class="icon">
+                <i class="fa-solid fa-user"></i>
+              </span>
+                Nalog 
+            </a>
+            <span class="navbar-item" *ngIf="!jePrijavljen">
+              <a class="button is-info is-inverted" routerLink="/prijava">
+                <span>Prijavi se</span>
+              </a>
+            </span>
+            <span class="navbar-item" *ngIf="jePrijavljen">
+              <a class="button is-info is-inverted" (click)="odjaviSe()">
+                <span>Odjavi se</span>
+              </a>
+            </span>
+            <span class="navbar-item" *ngIf="!jePrijavljen">
+              <a class="button is-info is-inverted" routerLink="/registracija">
+                <span>Registruj se</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="title">{{ title }}</p>
+      <p class="subtitle">{{ subtitle }}</p>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+            <a class="navbar-item" routerLink="/univerzitet">O univerzitetu</a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Fakultet</a>
+                <div class="navbar-dropdown">
+                    <div class="navbar-item has-dropdown is-hoverable" *ngFor="let fakultet of fakulteti">
+                      <a class="navbar-link">{{ fakultet.naziv }}</a>
+                      <div class="navbar-dropdown">
+                        <a class="navbar-item" *ngFor="let program of fakultet.programi"
+                          [routerLink]="['/programi', program.id]">
+                          {{ program.naziv }}
+                        </a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+<div class="adresa-forma-container">
+  <form [formGroup]="adresaForm">
+
+    <div class="form-group">
+      <label for="ulica">Ulica</label>
+      <input
+        type="text"
+        id="ulica"
+        formControlName="ulica"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('ulica')}">
+      <div *ngIf="isInvalid('ulica')" class="invalid-feedback">
+        <div *ngIf="adresaForm.get('ulica')?.errors?.['required']">
+          Ulica je obavezna
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="broj">Broj</label>
+      <input
+        type="text"
+        id="broj"
+        formControlName="broj"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('broj')}">
+      <div *ngIf="isInvalid('broj')" class="invalid-feedback">
+        <div *ngIf="adresaForm.get('broj')?.errors?.['required']">
+          Broj je obavezan
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="mesto">Grad</label>
+      <input
+        type="text"
+        id="mesto"
+        formControlName="mesto"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('mesto')}">
+      <div *ngIf="isInvalid('mesto')" class="invalid-feedback">
+        <div *ngIf="adresaForm.get('mesto')?.errors?.['required']">
+          Grad je obavezan
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="drzava">Drzava</label>
+      <input
+        type="text"
+        id="drzava"
+        formControlName="drzava"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('drzava')}">
+      <div *ngIf="isInvalid('drzava')" class="invalid-feedback">
+        <div *ngIf="adresaForm.get('drzava')?.errors?.['required']">
+          Drzava je obavezna
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

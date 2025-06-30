@@ -1,0 +1,21 @@
+<div class="registracija-container">
+  <form [formGroup]="registracijaForm" (ngSubmit)="sacuvaj()">
+
+    <app-korisnik-forma [korisnikForm]="korisnikFormGroup"> </app-korisnik-forma>
+    
+    <div class="form-group mt-2">
+      <button type="submit" class="btn btn-primary" [disabled]="registracijaForm.invalid">
+        Registruj se
+      </button>
+    </div>
+
+    <div class="form-group">
+      <div>
+        Imate nalog?
+      </div>
+      <button class="btn" (click)="prijaviSe()">
+        Prijavi se
+      </button>
+    </div>
+  </form>
+</div>
