@@ -1,1 +1,7 @@
-<p>fakultet-stranica works!</p>
+<section>
+    <app-fakultet-tabela
+        [fakulteti]="fakulteti"
+        (fakultetZaIzmenu)="odabraniFakultetZaIzmenu($event)">
+    </app-fakultet-tabela>
+    <app-fakultet-forma [fakultetZaIzmenu]></app-fakultet-forma>
+</section>

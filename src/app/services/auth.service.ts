@@ -32,6 +32,15 @@ export class AuthService {
     return this.http.post(endpoint, korisnik, { headers: headers });
   }
 
+  addOsoblje(korisnik: RegistrovaniKorisnik): Observable<any> {
+    const endpoint = `${this.apiUrl}/osoblje`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(endpoint, korisnik, { headers: headers });
+  }
+
   update(id: number, korisnikZaIzmenu: RegistrovaniKorisnik): Observable<string> {
     return this.http.put<any>(`${this.apiUrl}${id}`, korisnikZaIzmenu)
       .pipe(

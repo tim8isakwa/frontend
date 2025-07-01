@@ -54,6 +54,10 @@ export class UniverzitetFormaComponent implements OnInit {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
+  get adresaFormGroup(): FormGroup {
+    return this.univerzitetForm.get('adresa') as FormGroup;
+  }
+  
   get fakulteti(): FormArray {
     return this.univerzitetForm.get('fakulteti') as FormArray;
   }

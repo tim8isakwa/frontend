@@ -1,0 +1,52 @@
+<div class="student-forma-container">
+  <p class="subtitle">Dodaj studenta</p>
+  <form [formGroup]="studentForm" (ngSubmit)="kreiraj()">
+
+    <div class="form-group">
+      <label for="email">Email korisničkog naloga</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('email') }">
+      <div *ngIf="isInvalid('email')" class="invalid-feedback">
+        Unesite validan email korisnika.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="jmbg">JMBG</label>
+      <input
+        id="jmbg"
+        type="text"
+        formControlName="jmbg"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('jmbg') }">
+      <div *ngIf="isInvalid('jmbg')" class="invalid-feedback">
+        JMBG je obavezan (13 cifara).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ime">Ime</label>
+      <input
+        id="ime"
+        type="text"
+        formControlName="ime"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('ime') }">
+      <div *ngIf="isInvalid('ime')" class="invalid-feedback">
+        Ime je obavezno.
+      </div>
+    </div>
+
+    <app-adresa-forma [adresaForm]="adresaFormGroup"></app-adresa-forma>
+
+    <div class="form-group mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">
+        Kreiraj 
+      </button>
+    </div>
+  </form>
+</div>

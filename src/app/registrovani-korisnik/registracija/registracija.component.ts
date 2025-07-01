@@ -13,7 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './registracija.component.css'
 })
 export class RegistracijaComponent {
-  registracijaForm: FormGroup;
+  korisnikForma!: FormGroup;
+  registracijaForm!: FormGroup;
 
   @Output()
   korisnikSaved = new EventEmitter<RegistrovaniKorisnik>();
@@ -24,10 +25,12 @@ export class RegistracijaComponent {
     private authService: AuthService
   ) {
     this.registracijaForm = this.fb.group({
-      korisnickoIme: ['', [Validators.required, Validators.minLength(3)]],
-      lozinka: ['', [Validators.required, Validators.minLength(6)]],
-      potvrdaLozinke: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      korisnik: this.fb.group({
+        korisnickoIme: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        lozinka: ['', [Validators.required, Validators.minLength(6)]],
+        potvrdaLozinke: ['', Validators.required]
+      })
     }, {
       validators: this.potvrdaLozinkeValidator
     })

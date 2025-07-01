@@ -1,0 +1,64 @@
+<div class="zvanje-forma-container">
+  <form [formGroup]="zvanjeForm">
+  
+    <div class="form-group">
+      <label for="tipZvanja">Tip zvanja</label>
+      <input
+        type="text"
+        id="tipZvanja"
+        formControlName="tipZvanja"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('tipZvanja')}">
+      <div *ngIf="isInvalid('tipZvanja')" class="invalid-feedback">
+        <div *ngIf="zvanjeForm.get('tipZvanja')?.errors?.['required']">
+          Tip zvanja je obavezan
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="naucnaOblast">Naučna oblast</label>
+      <input
+        type="text"
+        id="naucnaOblast"
+        formControlName="naucnaOblast"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('naucnaOblast')}">
+      <div *ngIf="isInvalid('naucnaOblast')" class="invalid-feedback">
+        <div *ngIf="zvanjeForm.get('naucnaOblast')?.errors?.['required']">
+          Naučna oblast je obavezna
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="datumIzbora">Datum izbora</label>
+      <input
+        type="date"
+        id="datumIzbora"
+        formControlName="datumIzbora"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('datumIzbora')}">
+      <div *ngIf="isInvalid('datumIzbora')" class="invalid-feedback">
+        <div *ngIf="zvanjeForm.get('datumIzbora')?.errors?.['required']">
+          Datum izbora je obavezan
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="datumPrestanka">Datum prestanka</label>
+      <input
+        type="date"
+        id="datumPrestanka"
+        formControlName="datumPrestanka"
+        class="form-control"
+        [ngClass]="{'is-invalid': isInvalid('datumPrestanka')}">
+      <div *ngIf="isInvalid('datumPrestanka')" class="invalid-feedback">
+        <div *ngIf="zvanjeForm.get('datumPrestanka')?.errors?.['required']">
+          Datum prestanka je obavezan
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

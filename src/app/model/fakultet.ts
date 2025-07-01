@@ -8,7 +8,7 @@ export interface Fakultet {
     naziv: string,
     opis: String,
     adresa: Adresa,
-    univerzitet: Univerzitet,
     dekan: Nastavnik,
-    programi: StudijskiProgram[]
+    programi: StudijskiProgram[],
+    univerzitet: Univerzitet
 }

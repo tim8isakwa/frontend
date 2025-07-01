@@ -1,0 +1,24 @@
+<p class="subtitle">Studijski programi</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Naziv</th>
+      <th>Opis</th>
+      <th>Rukovodilac</th>
+      <th>Fakultet</th>
+      <th>Akcije</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let program of studijskiProgrami">
+      <td>{{ program.naziv }}</td>
+      <td class="opis">{{ program.opis }}</td>
+      <td>{{ program.rukovodilac.ime }}</td>
+      <td>{{ program.fakultet.naziv }}</td>
+      <td>
+        <button (click)="izmeni(program)" class="btn btn-primary btn-sm">Izmeni</button>
+        <button (click)="izbrisi(program.id)" class="btn btn-danger btn-sm ml-1">Izbriši</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

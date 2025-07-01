@@ -1,0 +1,23 @@
+<p>student-tabela works!</p>
+<p class="subtitle">Studenti</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ime</th>
+      <th>JMBG</th>
+      <th>Email</th>
+      <th>Adresa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studenti">
+      <td>{{ student.ime }}</td>
+      <td>{{ student.jmbg }}</td>
+      <td>{{ student.email }}</td>
+      <td>
+        {{ student.adresa?.ulica }} {{ student.adresa?.broj }},
+        {{ student.adresa?.mesto }}, {{ student.adresa?.drzava }}
+      </td>
+    </tr>
+  </tbody>
+</table>
