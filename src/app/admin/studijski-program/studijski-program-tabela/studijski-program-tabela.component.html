@@ -17,7 +17,7 @@
       <td>{{ program.fakultet.naziv }}</td>
       <td>
         <button (click)="izmeni(program)" class="btn btn-primary btn-sm">Izmeni</button>
-        <button (click)="izbrisi(program.id)" class="btn btn-danger btn-sm ml-1">Izbriši</button>
+        <button (click)="izbrisi(program.id!)" class="btn btn-danger btn-sm ml-1">Izbriši</button>
       </td>
     </tr>
   </tbody>

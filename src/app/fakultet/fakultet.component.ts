@@ -1,10 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Fakultet } from '../model/fakultet';
 import { FakultetService } from '../services/fakultet.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-fakultet',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule, HeaderComponent],
   templateUrl: './fakultet.component.html',
   styleUrl: './fakultet.component.css'
 })
@@ -26,4 +30,8 @@ export class FakultetComponent {
       }, error: (err) => console.error("Greška pri učitavanju fakulteta: ", err)
     });
   }
+  goBack() {
+  window.history.back();
+}
+
 }

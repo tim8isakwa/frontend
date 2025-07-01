@@ -4,12 +4,14 @@ import { UniverzitetService } from '../../../services/univezitet.service';
 import { Univerzitet } from '../../../model/univerzitet';
 import { Nastavnik } from '../../../model/nastavnik';
 import { NastavnikService } from '../../../services/nastavnik.service';
+import { NgClass } from '@angular/common';
+import { AdresaFormaComponent } from '../../adresa-forma/adresa-forma.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-univerzitet-forma',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AdresaFormaComponent, NgClass],
   templateUrl: './univerzitet-forma.component.html',
   styleUrls: ['./univerzitet-forma.component.css']
 })

@@ -5,10 +5,12 @@ import { StudijskiProgram } from '../../../model/studijskiProgram';
 import { StudijskiProgramService } from '../../../services/studijski-program.service';
 import { FakultetService } from '../../../services/fakultet.service';
 import { NastavnikService } from '../../../services/nastavnik.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-studijski-program-forma',
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, NgClass],
   templateUrl: './studijski-program-forma.component.html',
   styleUrl: './studijski-program-forma.component.css'
 })
@@ -38,6 +40,15 @@ export class StudijskiProgramFormaComponent {
     this.ucitajFakultete();
     this.ucitajNastavnike();
   }
+
+  isInvalid(controlName: string): boolean {
+    const control = this.programForm.get(controlName);
+    return !!control && control.invalid && (control.dirty || control.touched);
+  }
+
+
+
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['programZaIzmenu'] && this.programZaIzmenu) {
@@ -88,4 +99,6 @@ export class StudijskiProgramFormaComponent {
       alert('Forma nije validna. Proverite sva obavezna polja.');
     }
   }
+
+
 }

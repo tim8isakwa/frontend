@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StudijskiProgram } from '../../../model/studijskiProgram';
 import { StudijskiProgramService } from '../../../services/studijski-program.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-studijski-program-tabela',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './studijski-program-tabela.component.html',
   styleUrl: './studijski-program-tabela.component.css'
 })
 export class StudijskiProgramTabelaComponent {
   @Input()
-  programi: StudijskiProgram[] = [];
+  studijskiProgrami : StudijskiProgram[] = [];
   @Output() 
   programZaIzmenu: EventEmitter<StudijskiProgram> = new EventEmitter<StudijskiProgram>();
 
@@ -20,7 +22,7 @@ export class StudijskiProgramTabelaComponent {
 
   ucitajStudijskePrograme(): void {
     this.programService.getAll().subscribe({
-      next: (data) => this.programi = data,
+      next: (data) => this.studijskiProgrami  = data,
       error: (err) => console.error('Greška pri učitavanju programa:', err)
     }) 
   }
