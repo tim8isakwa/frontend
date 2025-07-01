@@ -1,0 +1,42 @@
+<app-header
+  [title]="'O Univerzitetu'"
+  [subtitle]="'Savremeno obrazovanje za buduće lidere'"
+  [backgroundUrl]="'/assets/images/bkg1.jpg'"></app-header>
+
+<section class="Podaci">
+    <div *ngIf="fakultet" class="container">
+        <h3 class="title is-4 mt-6">Osnovne informacije</h3>
+        <div class="content">
+        <p class="opis"><strong>Opis:</strong> {{ fakultet.opis }}</p>
+        <p>
+            <strong>Lokacija:</strong> 
+            <span *ngIf="fakultet.adresa">
+            {{ fakultet.adresa.ulica }} {{ fakultet.adresa.broj }},
+            {{ fakultet.adresa.mesto }}, {{ fakultet.adresa.drzava }}
+            </span>
+        </p>
+        <p>
+            <strong>Dekan: </strong>
+            <span *ngIf="fakultet.dekan">{{ fakultet.dekan.ime }}</span>
+        </p>
+
+        <h3 class="title is-4 mt-6">Studijski programi</h3>
+            <div *ngIf="fakultet.programi && fakultet.programi.length > 0; else noPrograms" class="columns is-multiline">
+                <div class="column is-one-third" *ngFor="let program of fakultet.programi">
+                    <div class="box">
+                    <a [routerLink]="['/studijskiProgrami', program.id]" class="navbar-item">
+                        <p class="title is-5">{{ program.naziv }}</p>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noPrograms>
+                <p>Trenutno nema dostupnih studijskih programa za ovaj fakultet.</p>
+            </ng-template>
+
+            <div class="buttons mt-5">
+                <button class="button is-link" (click)="goBack()">Nazad na početnu</button>
+            </div>
+        </div>
+    </div>
+</section>

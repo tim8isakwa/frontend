@@ -14,3 +14,7 @@ p {
     margin-bottom: 10px;
     line-height: 1.5;
 }
+
+.opis {
+    white-space: pre-line;
+}

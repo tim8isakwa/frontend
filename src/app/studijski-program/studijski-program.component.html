@@ -1,1 +1,24 @@
-<p>studijski-program works!</p>
+<app-header
+  [title]="'O Univerzitetu'"
+  [subtitle]="'Savremeno obrazovanje za buduće lidere'"
+  [backgroundUrl]="'/assets/images/bkg1.jpg'"></app-header>
+
+  <section class="Podaci">
+    <div *ngIf="program" class="container">
+        <h2 class="title is-3">{{ program.naziv }}</h2>
+
+        <h3 class="title is-4 mt-6">Osnovne informacije</h3>
+        <div class="content">
+            <p class="opis">{{ program.opis }}</p>
+            <p>
+                <strong>Rukovodilac: </strong>
+                <span *ngIf="program.rukovodilac">{{ program.rukovodilac.ime }}</span>
+            </p>
+        </div>
+
+        <div class="buttons mt-5">
+            <button class="button is-link" (click)="goBack()">Nazad na početnu</button>
+            </div>
+        </div>
+    </div>
+  </section>
