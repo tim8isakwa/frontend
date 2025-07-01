@@ -1,1 +1,30 @@
-<p>fakultet-tabela works!</p>
+<p class="subtitle">Fakulteti</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th>Adresa</th>
+            <th>Dekan</th>
+            <th>Studijski programi</th>
+            <th>Univerzitet</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let fakultet of fakulteti">
+            <td>{{ fakultet.naziv }}</td>
+            <td>{{ fakultet.opis }}</td>
+            <td>{{ fakultet.adresa }}</td>
+            <td>{{ fakultet.dekan.ime }}</td>
+            <ul>  
+               <li *ngFor="let program of fakultet.programi">{{ program.naziv }}</li>
+            </ul>  
+            <td>{{ fakultet.univerzitet.naziv }}</td>
+            <td>
+                <button (click)="izmeni(fakultet)">Izmeni</button>
+                <button (click)="izbrisi(fakultet.id)">Izbrisi</button>
+            </td>
+        </tr>
+    </tbody>    
+</table>

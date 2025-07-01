@@ -23,10 +23,12 @@ export class IzmenaComponent implements OnInit {
     private authService: AuthService
   ) {
     this.izmeniForm = this.fb.group({
-      korisnickoIme: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      lozinka: ['', [Validators.required, Validators.minLength(6)]],
-      potvrdaLozinke: ['', Validators.required]
+      korisnik: this.fb.group({
+        korisnickoIme: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        lozinka: ['', [Validators.required, Validators.minLength(6)]],
+        potvrdaLozinke: ['', Validators.required]
+      })
     }, {
       validators: this.potvrdaLozinkeValidator
     });

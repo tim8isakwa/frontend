@@ -1,13 +1,17 @@
-<form [formGroup]="izmeniForm" (ngSubmit)="izmeni()">
-  <app-korisnik-forma [korisnikForm]="korisnikForma"></app-korisnik-forma>
+<div class="izmeni-container">
+  <form [formGroup]="izmeniForm" (ngSubmit)="izmeni()">
+    <p class="subtitle">Izmeni</p>
 
-  <div class="form-group mt-3">
-    <button type="submit" class="btn btn-success" [disabled]="izmeniForm.invalid">
-      Sačuvaj izmene
-    </button>
-  </div>
+    <app-korisnik-forma [korisnikForm]="korisnikForma"></app-korisnik-forma>
 
-   <button class="btn2" routerLink="/homepage">
+    <div class="form-group mt-3">
+      <button type="submit" class="btn btn-success" [disabled]="izmeniForm.invalid">
+        Sačuvaj izmene
+      </button>
+    </div>
+
+    <button class="btn2" routerLink="/homepage">
         Otkazi
-   </button>
-</form>
+    </button>
+  </form>
+</div>

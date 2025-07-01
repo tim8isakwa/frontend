@@ -1,0 +1,10 @@
+<section>
+  <app-studijski-program-tabela
+    [studijskiProgrami]="studijskiProgrami"
+    (programZaIzmenu)="odabraniProgramZaIzmenu($event)">
+  </app-studijski-program-tabela>
+
+  <app-studijski-program-forma
+    [programZaIzmenu]="programZaIzmenu">
+  </app-studijski-program-forma>
+</section>
