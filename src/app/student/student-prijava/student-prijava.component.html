@@ -1,0 +1,15 @@
+<div *ngIf="predmeti.length > 0; else nemaPredmeta">
+  <ul>
+    <li *ngFor="let p of predmeti">
+      {{ p.naziv }} ({{ p.espb }} ESPB)
+      <button (click)="prijavi(p.id)">Prijavi ispit</button>
+    </li>
+  </ul>
+</div>
+
+<ng-template #nemaPredmeta>
+  <p>Nemate predmeta za prijavu ispita.</p>
+</ng-template>
+
+<p *ngIf="uspesnaPrijava" style="color: green;">Ispit uspešno prijavljen!</p>
+<p *ngIf="greska" style="color: red;">Greška: {{ greska }}</p>

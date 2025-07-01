@@ -1,0 +1,11 @@
+<div *ngIf="predmeti.length > 0; else nemaPredmeta">
+  <ul>
+    <li *ngFor="let p of predmeti">
+      {{ p.naziv }} ({{ p.espb }} ESPB)
+    </li>
+  </ul>
+</div>
+
+<ng-template #nemaPredmeta>
+  <p>Nemate upisanih predmeta.</p>
+</ng-template>

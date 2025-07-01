@@ -1,0 +1,24 @@
+<div *ngIf="polaganja.length > 0; else nemaIstorije">
+  <table>
+    <thead>
+      <tr>
+        <th>Predmet</th>
+        <th>Datum polaganja</th>
+        <th>Bodovi</th>
+        <th>Ocena</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of polaganja">
+        <td>{{ p.predmetNaziv }}</td>
+        <td>{{ p.datumPolaganja | date:'dd.MM.yyyy' }}</td>
+        <td>{{ p.bodovi !== null ? p.bodovi : 'N/A' }}</td>
+        <td>{{ p.ocena !== null ? p.ocena : 'N/A' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #nemaIstorije>
+  <p>Nemate istoriju polaganja.</p>
+</ng-template>

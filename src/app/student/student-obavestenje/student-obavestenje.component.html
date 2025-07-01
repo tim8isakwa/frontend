@@ -1,0 +1,11 @@
+<div *ngIf="obavestenja.length > 0; else nemaObavestenja">
+  <ul>
+    <li *ngFor="let o of obavestenja">
+      <strong>{{ o.naslov }}</strong> – {{ o.sadrzaj }} ({{ o.vremePostavljanja | date:'dd.MM.yyyy' }})
+    </li>
+  </ul>
+</div>
+
+<ng-template #nemaObavestenja>
+  <p>Nemate obaveštenja.</p>
+</ng-template>
