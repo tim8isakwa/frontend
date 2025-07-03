@@ -1,7 +1,14 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .izmeni-container {
   max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
+  margin-top: 60px;
+  margin-left: 100px;
+  flex-grow: 1;
 }
 
 .subtitle { 
@@ -27,7 +34,7 @@ label {
   border-radius: 4px;
 }
 
-.btn {
+button {
   background-color: #008bff;
   color: white;
   border: none;
@@ -37,6 +44,17 @@ label {
   font-size: 16px;
 }
 
+.btn1 {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.btn2 {
+  margin-left: 25px;
+}
+
 .btn:hover {
   background-color: #0068d5;
 }
+
