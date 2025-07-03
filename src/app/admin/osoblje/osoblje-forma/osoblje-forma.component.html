@@ -1,10 +1,10 @@
 <div class="osoblje-forma-container">
-  <form [formGroup]="osobljeFormForm" (ngSubmit)="sacuvaj()">
+  <form [formGroup]="osobljeForm" (ngSubmit)="sacuvaj()">
     <p class="subtitle">Dodaj osoblje</p>
     <app-korisnik-forma [korisnikForm]="korisnikFormGroup"> </app-korisnik-forma>
     
     <div class="form-group mt-2">
-      <button type="submit" class="btn btn-primary" [disabled]="osobljeFormForm.invalid">
+      <button type="submit" class="btn btn-primary" [disabled]="osobljeForm.invalid">
         Kreiraj
       </button>
     </div>

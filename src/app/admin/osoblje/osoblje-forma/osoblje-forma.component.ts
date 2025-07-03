@@ -1,18 +1,20 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegistrovaniKorisnik } from '../../../model/registrovaniKorisnik';
 import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { KorisnikFormaComponent } from '../../../registrovani-korisnik/korisnik-forma/korisnik-forma.component';
 
 @Component({
   selector: 'app-osoblje-forma',
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule, KorisnikFormaComponent],
   templateUrl: './osoblje-forma.component.html',
   styleUrl: './osoblje-forma.component.css'
 })
 export class OsobljeFormaComponent {
 
   korisnikForma!: FormGroup;
-  osobljeFormForm!: FormGroup;
+  osobljeForm!: FormGroup;
 
   @Output()
   korisnikSaved = new EventEmitter<RegistrovaniKorisnik>();
@@ -21,7 +23,7 @@ export class OsobljeFormaComponent {
     private fb: FormBuilder,
     private authService: AuthService
   ) {
-    this.osobljeFormForm = this.fb.group({
+    this.osobljeForm = this.fb.group({
       korisnik: this.fb.group({
         korisnickoIme: ['', [Validators.required, Validators.minLength(3)]],
         email: ['', [Validators.required, Validators.email]],
@@ -34,11 +36,11 @@ export class OsobljeFormaComponent {
   }
   
   get korisnikFormGroup(): FormGroup {
-    return this.osobljeFormForm.get('korisnik') as FormGroup;
+    return this.osobljeForm.get('korisnik') as FormGroup;
   }
 
   isInvalid(controlName: string): boolean {
-    const control = this.osobljeFormForm.get(controlName);
+    const control = this.osobljeForm.get(controlName);
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
@@ -49,14 +51,14 @@ export class OsobljeFormaComponent {
   }
 
   sacuvaj() {
-    if (this.osobljeFormForm.valid) {
-      const korisnik: RegistrovaniKorisnik = this.osobljeFormForm.value;
+    if (this.osobljeForm.valid) {
+      const korisnik: RegistrovaniKorisnik = this.osobljeForm.value;
     
       this.authService.addOsoblje(korisnik).subscribe({
         next: () => {
           alert("Kreiranje je uspešna.")
           this.korisnikSaved.emit();
-          this.osobljeFormForm.reset();
+          this.osobljeForm.reset();
         }, error: (err) => console.error("Greška pri kreiranju osoblja: ", err)
       })
     } else {

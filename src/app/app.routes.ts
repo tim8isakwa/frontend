@@ -20,6 +20,9 @@ import { StudijskiProgramStranicaComponent } from './admin/studijski-program/stu
 import { OsobljeDashboardComponent } from './osoblje/osoblje-dashboard/osoblje-dashboard.component';
 import { StudentFormaComponent } from './osoblje/student/student-forma/student-forma.component';
 import { StudentTabelaComponent } from './osoblje/student/student-tabela/student-tabela.component';
+import { KorisnikTabelaComponent } from './admin/korisnik-tabela/korisnik-tabela.component';
+import { NastavnikFormaComponent } from './admin/nastavnik/nastavnik-forma/nastavnik-forma.component';
+import { OsobljeFormaComponent } from './admin/osoblje/osoblje-forma/osoblje-forma.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'univerzitet', pathMatch: 'full' },
@@ -35,6 +38,9 @@ export const routes: Routes = [
     children: [
         { path: '', redirectTo: 'aktiviraj', pathMatch: 'full' },
         { path: 'aktiviraj', component: AktivirajComponent},
+        { path: 'korisnici', component: KorisnikTabelaComponent},
+        { path: 'osoblje-forma', component: OsobljeFormaComponent},
+        { path: 'nastavnik-forma', component: NastavnikFormaComponent},
         { path: 'univerzitet-forma', component: UniverzitetFormaComponent },
         { path: 'fakultet-stranica', component: FakultetStranicaComponent },
         { path: 'program-stranica', component: StudijskiProgramStranicaComponent },

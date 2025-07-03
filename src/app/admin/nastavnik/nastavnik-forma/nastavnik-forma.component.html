@@ -2,11 +2,17 @@
   <p class="subtitle">Dodaj nastavnika</p>
   <form [formGroup]="nastavnikForm" (ngSubmit)="kreiraj()">
 
-    <app-korisnik-forma [korisnikForm]="korisnikFormGroup"></app-korisnik-forma>
+    <app-korisnik-forma [korisnikForm]="korisnikForm"></app-korisnik-forma>
 
-    <app-adresa-forma [adresaForm]="adresaFormGroup"></app-adresa-forma>
+    <app-adresa-forma [adresaForm]="adresaForm"></app-adresa-forma>
 
-    <app-zvanje-forma [zvanjeForm]="zvanjeFormGroup"></app-zvanje-forma>
+  <div formArrayName="zvanja">
+    <div *ngFor="let zvanje of zvanja.controls; let i = index" [formGroupName]="i">
+      <app-zvanje-forma [zvanjeForm]="getZvanjeFormGroup(zvanje)"></app-zvanje-forma>
+      <button type="button" (click)="ukloniZvanje(i)">Ukloni zvanje</button>
+    </div>
+    <button type="button" (click)="dodajZvanje()">Dodaj zvanje</button>
+  </div>
 
     <div class="form-group">
       <label for="jmbg">JMBG</label>

@@ -1,9 +1,10 @@
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-zvanje-forma',
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule, NgClass],
   templateUrl: './zvanje-forma.component.html',
   styleUrls: ['./zvanje-forma.component.css']
 })

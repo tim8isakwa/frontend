@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-adresa-forma',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, NgClass],
   templateUrl: './adresa-forma.component.html',
   styleUrl: './adresa-forma.component.css'

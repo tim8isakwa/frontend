@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { KorisnikFormaComponent } from '../../../registrovani-korisnik/korisnik-forma/korisnik-forma.component';
 import { AdresaFormaComponent } from '../../adresa-forma/adresa-forma.component';
@@ -40,6 +40,18 @@ export class NastavnikFormaComponent {
       }),
       zvanja: this.fb.array([])
     }, { validators: this.potvrdaLozinkeValidator });
+  }
+
+  get korisnikForm(): FormGroup {
+    return this.nastavnikForm.get('korisnik') as FormGroup;
+  }
+
+  get adresaForm(): FormGroup {
+    return this.nastavnikForm.get('adresa') as FormGroup;
+  }
+
+  getZvanjeFormGroup(control: AbstractControl): FormGroup {
+    return control as FormGroup;
   }
 
   get zvanja(): FormArray {

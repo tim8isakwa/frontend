@@ -53,7 +53,7 @@ export class RegistracijaComponent {
 
   sacuvaj() {
     if (this.registracijaForm.valid) {
-      const korisnik: RegistrovaniKorisnik = this.registracijaForm.value;
+      const korisnik: RegistrovaniKorisnik = this.registracijaForm.get('korisnik')?.value;
     
       this.authService.register(korisnik).subscribe({
         next: () => {

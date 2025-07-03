@@ -2,20 +2,32 @@
   <aside class="menu">
     <p class="menu-label">Administracija</p>
     <ul class="menu-list">
-        <li>
-            <a>Registrovani korisnici</a>
-            <ul>
-                <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/korisnici">Pregled korisnika</a></li>
-                <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/aktiviraj">Aktiviraj korisnika</a></li>
-                <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/nastavnik-forma">Dodaj nastavnika</a></li>
-                <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/osoblje-forma">Dodaj studentsko osoblje</a></li>
-            </ul>
-        </li>
+      <li>
+        <a>Registrovani korisnici</a>
         <ul>
-            <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/univerzitet-forma">Univerzitet</a></li>
-            <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/fakultet-stranica">Fakulteti</a></li>
-            <li routerLinkActive="is-active"><a class="navbar-item" routerLink="admin-dashboard/program-stranica">Studijski programi</a></li>
+          <li>
+            <a class="navbar-item" routerLink="/admin-dashboard/korisnici" routerLinkActive="is-active">Pregled korisnika</a>
+          </li>
+          <li>
+            <a class="navbar-item" routerLink="/admin-dashboard/aktiviraj" routerLinkActive="is-active">Aktiviraj korisnika</a>
+          </li>
+          <li>
+            <a class="navbar-item" routerLink="/admin-dashboard/nastavnik-forma" routerLinkActive="is-active">Dodaj nastavnika</a>
+          </li>
+          <li>
+            <a class="navbar-item" routerLink="/admin-dashboard/osoblje-forma" routerLinkActive="is-active">Dodaj studentsko osoblje</a>
+          </li>
         </ul>
+      </li>
+      <li>
+        <a class="navbar-item" routerLink="/admin-dashboard/univerzitet-forma" routerLinkActive="is-active">Univerzitet</a>
+      </li>
+      <li>
+        <a class="navbar-item" routerLink="/admin-dashboard/fakultet-stranica" routerLinkActive="is-active">Fakulteti</a>
+      </li>
+      <li>
+        <a class="navbar-item" routerLink="/admin-dashboard/program-stranica" routerLinkActive="is-active">Studijski programi</a>
+      </li>
     </ul>
   </aside>
 </div>
