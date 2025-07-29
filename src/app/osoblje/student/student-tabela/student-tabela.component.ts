@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Student } from '../../../model/student';
 import { StudentService } from '../../../services/student.service';
-import { MenuToggleService } from '../../../services/menu-toggle.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,13 +13,8 @@ export class StudentTabelaComponent {
    studenti: Student[] = [];
  
    constructor(
-     private menuToggleService: MenuToggleService,
      private studentService: StudentService
    ) { }
- 
-   onSomeAction() {
-     this.menuToggleService.toggleMenu();
-   }
  
    ngOnInit() {
      this.ucitajStudente();

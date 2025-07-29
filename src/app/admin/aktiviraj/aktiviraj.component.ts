@@ -16,7 +16,9 @@ export class AktivirajComponent {
   constructor(
     private menuToggleService: MenuToggleService,
     private adminService: AdminService
-  ) { }
+  ) { 
+     this.ucitajNeaktivneKorisnike();
+  }
 
   onSomeAction() {
     this.menuToggleService.toggleMenu();

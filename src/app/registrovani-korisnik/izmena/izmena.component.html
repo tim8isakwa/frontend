@@ -4,25 +4,17 @@
 
       <p class="subtitle">Izmeni</p>
 
-      <app-korisnik-forma [korisnikForm]="korisnikForma"></app-korisnik-forma>
+      <app-korisnik-forma [korisnikForm]="korisnikFormGroup"></app-korisnik-forma>
 
       <div class="form-group mt-3">
         <button type="submit" class="btn btn-success" [disabled]="izmeniForm.invalid">
           Sačuvaj izmene
         </button>
 
-        <button class="btn2" routerLink="/univerzitet">
+        <button type="button" class="btn2" (click)="otkazi()">
           Otkazi
         </button>
       </div>
     </form>
-  </div>
-
-  <div class="btn1">
-    <button routerLink="/univerzitet">
-      <span class="icon">
-        <i class="fa-solid fa-chevron-left"></i>
-      </span>
-    </button>
   </div>
 </div>

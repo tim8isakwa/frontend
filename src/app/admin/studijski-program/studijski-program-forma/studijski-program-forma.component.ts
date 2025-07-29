@@ -46,13 +46,30 @@ export class StudijskiProgramFormaComponent {
     return !!control && control.invalid && (control.dirty || control.touched);
   }
 
-
-
-
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['programZaIzmenu'] && this.programZaIzmenu) {
-      this.programForm.patchValue(this.programZaIzmenu);
+      this.nastavnikService.getAll().subscribe({
+        next: (nastavnici) => {
+          this.nastavnici = nastavnici;
+
+          this.programService.getAll().subscribe({
+            next: (data) => {
+              if (data.length > 0) {
+                const program = data[0];
+
+                const programRukovodilac = this.nastavnici.find(
+                  n => n.id === program.rukovodilac?.id
+                );
+
+                program.rukovodilac = programRukovodilac ?? null;
+                this.programForm.patchValue(program);
+            }
+          },
+          error: (err) => console.error('Greška pri učitavanju programa:', err)
+        });
+        },
+        error: (err) => console.error('Greška pri učitavanju nastavnika:', err)
+      });
     } else {
       this.programForm.reset();
     }
@@ -99,6 +116,4 @@ export class StudijskiProgramFormaComponent {
       alert('Forma nije validna. Proverite sva obavezna polja.');
     }
   }
-
-
 }

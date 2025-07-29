@@ -41,13 +41,27 @@ export class UniverzitetFormaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ucitajNastavnike();
-    this.univerzitetService.getAll().subscribe({
-      next: (data) => {
-        if (data.length > 0) {
-          this.univerzitetForm.patchValue(data[0]);
-        }
-      }
+    this.nastavnikService.getAll().subscribe({
+      next: (nastavnici) => {
+        this.nastavnici = nastavnici;
+
+        this.univerzitetService.getAll().subscribe({
+          next: (data) => {
+            if (data.length > 0) {
+              const univerzitet = data[0];
+
+              const univerzitetRektor = this.nastavnici.find(
+                n => n.id === univerzitet.rektor?.id
+              );
+
+              univerzitet.rektor = univerzitetRektor ?? null;
+              this.univerzitetForm.patchValue(univerzitet);
+          }
+        },
+        error: (err) => console.error('Greška pri učitavanju univerziteta:', err)
+      });
+      },
+      error: (err) => console.error('Greška pri učitavanju nastavnika:', err)
     });
   }
 
@@ -62,13 +76,6 @@ export class UniverzitetFormaComponent implements OnInit {
   
   get fakulteti(): FormArray {
     return this.univerzitetForm.get('fakulteti') as FormArray;
-  }
-
-  ucitajNastavnike(): void {
-    this.nastavnikService.getAll().subscribe({
-      next: data => this.nastavnici = data,
-      error: (err) => console.error('Greška pri učitavanju nastavnika:', err)
-    });
   }
 
   dodajFakultet(): void {

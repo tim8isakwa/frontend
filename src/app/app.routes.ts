@@ -23,6 +23,8 @@ import { StudentTabelaComponent } from './osoblje/student/student-tabela/student
 import { KorisnikTabelaComponent } from './admin/korisnik-tabela/korisnik-tabela.component';
 import { NastavnikFormaComponent } from './admin/nastavnik/nastavnik-forma/nastavnik-forma.component';
 import { OsobljeFormaComponent } from './admin/osoblje/osoblje-forma/osoblje-forma.component';
+import { RasporedNastaveComponent } from './osoblje/raspored-nastave/raspored-nastave.component';
+import { RasporedIspitaComponent } from './osoblje/raspored-ispita/raspored-ispita.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'univerzitet', pathMatch: 'full' },
@@ -66,6 +68,8 @@ export const routes: Routes = [
         { path: '', redirectTo: 'student-tabela', pathMatch: 'full' },
         { path: 'student-forma', component: StudentFormaComponent },
         { path: 'student-tabela', component: StudentTabelaComponent },
+        { path: 'raspored-nastave', component: RasporedNastaveComponent },
+        { path: 'raspored-ispita', component: RasporedIspitaComponent },
     ],
     data: { requiredRoles: ["ROLE_OSOBLJE"] }, canActivate: [authGuard]
   },

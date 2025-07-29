@@ -8,6 +8,6 @@ export interface Univerzitet {
     datumOsnivanja: Date,
     opis: String,
     adresa: Adresa,
-    rektor: Nastavnik,
+    rektor: Nastavnik | null,
     fakulteti: Fakultet[]
 }

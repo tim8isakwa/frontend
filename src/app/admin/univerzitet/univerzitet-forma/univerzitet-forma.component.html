@@ -33,8 +33,7 @@
     </div>
     
     <!-- <app-adresa-forma [adresaForm]="univerzitetForm.get('adresa')"></app-adresa-forma> -->
-  <app-adresa-forma [adresaForm]="adresaFormGroup"></app-adresa-forma>
-
+    <app-adresa-forma [adresaForm]="adresaFormGroup"></app-adresa-forma>
 
     <div class="form-group">
       <label>Fakulteti</label>
@@ -45,7 +44,6 @@
             formControlName="naziv"
             class="form-control"
             [ngClass]="{'is-invalid': isInvalid('naziv')}">
-
 
           <button type="button" class="btn btn-danger btn-sm ml-2" (click)="ukloniFakultet(i)">−</button>
         </div>

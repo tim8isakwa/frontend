@@ -6,14 +6,6 @@
 
     <app-adresa-forma [adresaForm]="adresaForm"></app-adresa-forma>
 
-  <div formArrayName="zvanja">
-    <div *ngFor="let zvanje of zvanja.controls; let i = index" [formGroupName]="i">
-      <app-zvanje-forma [zvanjeForm]="getZvanjeFormGroup(zvanje)"></app-zvanje-forma>
-      <button type="button" (click)="ukloniZvanje(i)">Ukloni zvanje</button>
-    </div>
-    <button type="button" (click)="dodajZvanje()">Dodaj zvanje</button>
-  </div>
-
     <div class="form-group">
       <label for="jmbg">JMBG</label>
       <input
@@ -49,6 +41,8 @@
         class="form-control"></textarea>
     </div>
 
+    <app-zvanje-forma [zvanjeForm]="zvanjeForm"></app-zvanje-forma>
+    
     <div class="form-group">
       <button type="submit" class="btn" [disabled]="nastavnikForm.invalid">
         Kreiraj

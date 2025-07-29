@@ -8,7 +8,7 @@ import { RegistrovaniKorisnik } from '../model/registrovaniKorisnik';
   providedIn: 'root'
 })
 export class AdminService {
-private apiUrl = 'http://localhost:8080/api/fakulteti';
+private apiUrl = 'http://localhost:8080/api/registrovaniKorisnici';
 
   constructor(
     private http: HttpClient,
@@ -34,6 +34,12 @@ private apiUrl = 'http://localhost:8080/api/fakulteti';
     return this.http.get<RegistrovaniKorisnik[]>(`${this.apiUrl}/status?aktivan=${aktivan}`, {
       headers: this.getHeaders()
     });
+  }
+
+  addOsoblje(korisnik: RegistrovaniKorisnik): Observable<any> {
+    return this.http.post<RegistrovaniKorisnik>(`${this.apiUrl}/osoblje`, korisnik, {
+        headers: this.getHeaders()
+      });
   }
 
   activateUser(id: number): Observable<RegistrovaniKorisnik> {

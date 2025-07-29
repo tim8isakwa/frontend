@@ -44,12 +44,27 @@ export class FakultetFormaComponent {
     });
 
     this.ucitajUniverzitete();
-    this.ucitajNastavnike();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['fakultetZaIzmenu'] && this.fakultetZaIzmenu) {
-      this.fakultetForm.patchValue(this.fakultetZaIzmenu);
+      this.nastavnikService.getAll().subscribe({
+        next: (nastavnici) => {
+          this.nastavnici = nastavnici;
+
+          const dekan = this.fakultetZaIzmenu?.dekan;
+          const dekanExists = this.nastavnici.find( 
+            n => n.id === dekan?.id
+          );
+          
+          if (!dekanExists && dekan) {
+            this.nastavnici.unshift(dekan);
+          }
+          
+        this.fakultetForm.patchValue(this.fakultetZaIzmenu!);
+      },
+        error: (err) => console.error('Greška pri učitavanju fakulteta:', err)
+      });
     } else {
       this.fakultetForm.reset();
     }

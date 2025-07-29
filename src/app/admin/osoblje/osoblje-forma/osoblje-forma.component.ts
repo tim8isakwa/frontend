@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegistrovaniKorisnik } from '../../../model/registrovaniKorisnik';
-import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { KorisnikFormaComponent } from '../../../registrovani-korisnik/korisnik-forma/korisnik-forma.component';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-osoblje-forma',
@@ -12,7 +12,6 @@ import { KorisnikFormaComponent } from '../../../registrovani-korisnik/korisnik-
   styleUrl: './osoblje-forma.component.css'
 })
 export class OsobljeFormaComponent {
-
   korisnikForma!: FormGroup;
   osobljeForm!: FormGroup;
 
@@ -21,7 +20,7 @@ export class OsobljeFormaComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private adminService: AdminService
   ) {
     this.osobljeForm = this.fb.group({
       korisnik: this.fb.group({
@@ -52,14 +51,14 @@ export class OsobljeFormaComponent {
 
   sacuvaj() {
     if (this.osobljeForm.valid) {
-      const korisnik: RegistrovaniKorisnik = this.osobljeForm.value;
+      const korisnik: RegistrovaniKorisnik = this.osobljeForm.get('korisnik')?.value;
     
-      this.authService.addOsoblje(korisnik).subscribe({
+      this.adminService.addOsoblje(korisnik).subscribe({
         next: () => {
-          alert("Kreiranje je uspešna.")
+          alert("Kreiranje je uspešno.")
           this.korisnikSaved.emit();
           this.osobljeForm.reset();
-        }, error: (err) => console.error("Greška pri kreiranju osoblja: ", err)
+        }, error: (err) => console.error("Greška pri kreiranju osoblja: ", korisnik)
       })
     } else {
       alert("Forma nije validna. Proverite polja.");

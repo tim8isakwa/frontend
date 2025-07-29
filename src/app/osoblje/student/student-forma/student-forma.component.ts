@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { AdresaFormaComponent } from '../../../admin/adresa-forma/adresa-forma.component';
 import { StudentService } from '../../../services/student.service';
-import { MenuToggleService } from '../../../services/menu-toggle.service';
 
 @Component({
   selector: 'app-student-forma',
@@ -17,7 +16,6 @@ export class StudentFormaComponent {
   studentForm: FormGroup;
 
   constructor(
-    private menuToggleService: MenuToggleService,
     private fb: FormBuilder,
     private studentService: StudentService
   ) {
@@ -32,10 +30,6 @@ export class StudentFormaComponent {
         drzava: ['', Validators.required]
       })
     });
-  }
-
-  onSomeAction() {
-    this.menuToggleService.toggleMenu();
   }
   
   get adresaFormGroup(): FormGroup {

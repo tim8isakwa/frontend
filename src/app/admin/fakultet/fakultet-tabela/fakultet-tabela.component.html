@@ -15,7 +15,7 @@
         <tr *ngFor="let fakultet of fakulteti">
             <td>{{ fakultet.naziv }}</td>
             <td class="opis">{{ fakultet.opis }}</td>
-            <td>{{ fakultet.adresa }}</td>
+            <td>{{ fakultet.adresa.mesto }}, {{ fakultet.adresa.ulica }} {{ fakultet.adresa.broj }}</td>
             <td>{{ fakultet.dekan.ime }}</td>
             <ul>  
                <li *ngFor="let program of fakultet.programi">{{ program.naziv }}</li>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrovaniKorisnik } from '../../model/registrovaniKorisnik';
 import { AuthService } from '../../services/auth.service';
 import { KorisnikFormaComponent } from '../korisnik-forma/korisnik-forma.component';
@@ -19,6 +19,7 @@ export class IzmenaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService
   ) {
@@ -60,5 +61,9 @@ export class IzmenaComponent implements OnInit {
         error: err => console.error("Greška pri izmeni: ", err)
       });
     }
+  }
+
+  otkazi() {
+    this.router.navigate(['/univerzitet']);
   }
 }

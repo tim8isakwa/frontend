@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudijskiProgramService {
-  private apiUrl = 'http://localhost:8080/api/studijskiProgrami';
+  private apiUrl = 'http://localhost:8080/api/programi';
 
   constructor(
     private http: HttpClient,
@@ -37,9 +37,8 @@ export class StudijskiProgramService {
   }
 
   create(program: StudijskiProgram): Observable<any> {
-    const endpoint = `${this.apiUrl}/kreiraj`;
-    return this.http.post(endpoint, program, {
-      headers: this.getHeaders()
+    return this.http.post<StudijskiProgram>(`${this.apiUrl}/kreiraj`, program, {
+        headers: this.getHeaders()
     });
   }
 

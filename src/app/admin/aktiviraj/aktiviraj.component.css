@@ -3,15 +3,9 @@
   margin-bottom: 25px;
 }
 
-.opis {
-    white-space: nowrap; 
-    overflow: hidden;  
-    max-width: 320px;   
-}
-
 .table button {
-    background-color: grey; 
     color: white; 
+    background-color: red;
     padding: 8px 12px; 
     border-radius: 5px; 
     cursor: pointer;
