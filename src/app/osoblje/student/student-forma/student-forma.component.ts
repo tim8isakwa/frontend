@@ -2,11 +2,19 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdresaFormaComponent } from '../../../admin/adresa-forma/adresa-forma.component';
-import { StudentService } from '../../../services/student.service';
+import { OsobljeService } from '../../../services/osoblje.service';
+import { Student } from '../../../model/student';
+import { StudentNaGodini } from '../../../model/studentNaGodini';
+import { KorisnikFormaComponent } from '../../../registrovani-korisnik/korisnik-forma/korisnik-forma.component';
 
 @Component({
   selector: 'app-student-forma',
-  imports: [CommonModule, ReactiveFormsModule, AdresaFormaComponent],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    AdresaFormaComponent,
+    KorisnikFormaComponent
+  ],
   templateUrl: './student-forma.component.html',
   styleUrls: ['./student-forma.component.css']
 })
@@ -17,9 +25,15 @@ export class StudentFormaComponent {
 
   constructor(
     private fb: FormBuilder,
-    private studentService: StudentService
+    private osobljeService: OsobljeService
   ) {
     this.studentForm = this.fb.group({
+      korisnik: this.fb.group({
+        korisnickoIme: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        lozinka: ['', [Validators.required, Validators.minLength(6)]],
+        potvrdaLozinke: ['', Validators.required]
+      }),
       email: ['', [Validators.required, Validators.email]],
       jmbg: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
       ime: ['', Validators.required],
@@ -28,10 +42,18 @@ export class StudentFormaComponent {
         broj: ['', Validators.required],
         mesto: ['', Validators.required],
         drzava: ['', Validators.required]
-      })
+      }),
+      program: ['', Validators.required],
+      godina: ['', Validators.required],
+      brojIndeksa: ['', Validators.required],
+      datumUpisa: ['', Validators.required]
     });
   }
   
+  get korisnikForm(): FormGroup {
+    return this.studentForm.get('korisnik') as FormGroup;
+  }
+
   get adresaFormGroup(): FormGroup {
     return this.studentForm.get('adresa') as FormGroup;
   }
@@ -43,9 +65,9 @@ export class StudentFormaComponent {
 
   kreiraj(): void {
     if (this.studentForm.valid) {
-      const studentData = this.studentForm.value;
+      const studentData = this.studentForm.value; 
 
-      this.studentService.create(studentData).subscribe({
+      this.osobljeService.createStudent(studentData).subscribe({
         next: () => {
           alert('Student uspešno kreiran.');
           this.studentForm.reset();

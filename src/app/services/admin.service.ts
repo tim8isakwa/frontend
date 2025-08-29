@@ -46,8 +46,4 @@ private apiUrl = 'http://localhost:8080/api/registrovaniKorisnici';
     const endpoint = `${this.apiUrl}/aktiviraj/${id}`;
     return this.http.post<RegistrovaniKorisnik>(endpoint, {}, { headers: this.getHeaders() }); 
   }
-
-  deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
-  }
 }

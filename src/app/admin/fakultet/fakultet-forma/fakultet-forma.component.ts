@@ -6,6 +6,7 @@ import { UniverzitetService } from '../../../services/univezitet.service';
 import { NastavnikService } from '../../../services/nastavnik.service';
 import { CommonModule } from '@angular/common';
 import { AdresaFormaComponent } from '../../adresa-forma/adresa-forma.component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-fakultet-forma',
@@ -44,31 +45,37 @@ export class FakultetFormaComponent {
     });
 
     this.ucitajUniverzitete();
+    this.ucitajNastavnike();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['fakultetZaIzmenu'] && this.fakultetZaIzmenu) {
-      this.nastavnikService.getAll().subscribe({
-        next: (nastavnici) => {
-          this.nastavnici = nastavnici;
+      forkJoin({
+        nastavnici: this.nastavnikService.getAll(),
+        univerziteti: this.univerzitetService.getAll()
+      }).subscribe(({ nastavnici, univerziteti }) => {
+        this.nastavnici = nastavnici;
+        this.univerziteti = univerziteti;
 
-          const dekan = this.fakultetZaIzmenu?.dekan;
-          const dekanExists = this.nastavnici.find( 
-            n => n.id === dekan?.id
-          );
-          
-          if (!dekanExists && dekan) {
-            this.nastavnici.unshift(dekan);
-          }
-          
-        this.fakultetForm.patchValue(this.fakultetZaIzmenu!);
-      },
-        error: (err) => console.error('Greška pri učitavanju fakulteta:', err)
+        const dekanObj = this.nastavnici.find(
+          n => n.id == this.fakultetZaIzmenu?.dekan?.id
+        );
+
+        const univerzitetObj = this.univerziteti.find(
+          u => u.id == this.fakultetZaIzmenu?.univerzitet?.id
+        );
+
+        this.fakultetForm.patchValue({
+          ...this.fakultetZaIzmenu,
+          dekan: dekanObj ?? null,
+          univerzitet: univerzitetObj ?? null
+        });
       });
     } else {
       this.fakultetForm.reset();
+      this.programi.clear();
     }
-  } 
+  }
 
   isInvalid(controlPath: string): boolean {
     const control = this.fakultetForm.get(controlPath);

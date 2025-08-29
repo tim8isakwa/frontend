@@ -5,6 +5,8 @@
 
 <section class="Podaci">
     <div *ngIf="fakultet" class="container">
+        <h2 class="title is-3">{{ fakultet.naziv }}</h2>
+
         <h3 class="title is-4 mt-6">Osnovne informacije</h3>
         <div class="content">
         <p class="opis"><strong>Opis:</strong> {{ fakultet.opis }}</p>

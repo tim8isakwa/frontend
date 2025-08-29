@@ -40,6 +40,10 @@ export class AuthService {
       );
   }
 
+  delete(id: number): Observable<void> {
+      return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
   findById(id: number): Observable<RegistrovaniKorisnik> {
       return this.http.get<RegistrovaniKorisnik>(`${this.apiUrl}/${id}`);
   }

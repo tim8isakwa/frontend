@@ -1,0 +1,9 @@
+.timetable-table {
+  margin-top: 20px;
+}
+
+.button-row {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}

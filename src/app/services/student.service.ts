@@ -39,24 +39,6 @@ export class StudentService {
     });
   }
 
-  create(student: Student): Observable<Student> {
-    return this.http.post<Student>(`${this.apiUrl}/kreiraj`, student, {
-      headers: this.getHeaders()
-    });
-  }
-
-  update(id: number, student: Student): Observable<Student> {
-    return this.http.put<Student>(`${this.apiUrl}/${id}`, student, {
-      headers: this.getHeaders()
-    });
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
-      headers: this.getHeaders()
-    });
-  }
-
   //Studentske funkcionalnosti
 
   getPredmetiKojeSlusa(studentId: number): Observable<Predmet[]> {

@@ -66,4 +66,14 @@ export class IzmenaComponent implements OnInit {
   otkazi() {
     this.router.navigate(['/univerzitet']);
   }
+
+  izbrisi() {
+    const confirmation = confirm("Da li ste sigurni da biste izbrisali nalog? ");
+    if (confirmation) {
+      this.authService.delete(this.korisnikId).subscribe({
+        next: () => alert("Nalog je uspešno izbrisan."),
+        error: err => console.error("Greška pri brisanju: ", err)
+      })
+    }
+  }
 }

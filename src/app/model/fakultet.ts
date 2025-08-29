@@ -4,7 +4,7 @@ import { StudijskiProgram } from "./studijskiProgram";
 import { Univerzitet } from "./univerzitet";
 
 export interface Fakultet {
-    id?: number,
+    id: number,
     naziv: string,
     opis: String,
     adresa: Adresa,

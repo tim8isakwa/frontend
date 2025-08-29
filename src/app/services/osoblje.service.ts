@@ -1,50 +1,42 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { Univerzitet } from '../model/univerzitet';
+import { Student } from '../model/student';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UniverzitetService {
-  private apiUrl = 'http://localhost:8080/api/univerziteti';
+export class OsobljeService {
+  private apiUrl = 'http://localhost:8080/api/studenti';
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) { }
+  ) {}
 
   private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
-    let headers = new HttpHeaders();
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
-    console.log('Auth token:', token);
-
     return headers;
   }
 
-  getAll(): Observable<Univerzitet[]> {
-    return this.http.get<Univerzitet[]>(this.apiUrl, {
-      headers: this.getHeaders(),
-    });
-  }
-
-  getById(id: number): Observable<Univerzitet> {
-    return this.http.get<Univerzitet>(`${this.apiUrl}/${id}`, {
+  createStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(`${this.apiUrl}/kreiraj`, student, {
       headers: this.getHeaders()
     });
   }
 
-  save(univerzitet: Univerzitet): Observable<Univerzitet> {
-    return this.http.put<Univerzitet>(`${this.apiUrl}`, univerzitet, {
+  updateStudent(id: number, student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.apiUrl}/${id}`, student, {
       headers: this.getHeaders()
     });
   }
 
-  delete(id: number): Observable<void> {
+  deleteStudent(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`, {
       headers: this.getHeaders()
     });

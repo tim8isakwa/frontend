@@ -6,6 +6,7 @@ import { StudijskiProgramService } from '../../../services/studijski-program.ser
 import { FakultetService } from '../../../services/fakultet.service';
 import { NastavnikService } from '../../../services/nastavnik.service';
 import { NgClass } from '@angular/common';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-studijski-program-forma',
@@ -48,32 +49,31 @@ export class StudijskiProgramFormaComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['programZaIzmenu'] && this.programZaIzmenu) {
-      this.nastavnikService.getAll().subscribe({
-        next: (nastavnici) => {
-          this.nastavnici = nastavnici;
+      forkJoin({
+        fakulteti: this.fakultetService.getAll(),
+        nastavnici: this.nastavnikService.getAll()
+      }).subscribe(({ fakulteti, nastavnici }) => {
+        this.fakulteti = fakulteti;
+        this.nastavnici = nastavnici;
 
-          this.programService.getAll().subscribe({
-            next: (data) => {
-              if (data.length > 0) {
-                const program = data[0];
+        const rukovodilacObj = this.nastavnici.find(
+          n => n.id === this.programZaIzmenu?.rukovodilac?.id
+        );
+        
+        const fakultetObj = this.fakulteti.find(
+          f => f.id === this.programZaIzmenu?.fakultet?.id
+        );
 
-                const programRukovodilac = this.nastavnici.find(
-                  n => n.id === program.rukovodilac?.id
-                );
-
-                program.rukovodilac = programRukovodilac ?? null;
-                this.programForm.patchValue(program);
-            }
-          },
-          error: (err) => console.error('Greška pri učitavanju programa:', err)
+        this.programForm.patchValue({
+          ...this.programZaIzmenu,
+          rukovodilac: rukovodilacObj ?? null,
+          fakultet: fakultetObj ?? null
         });
-        },
-        error: (err) => console.error('Greška pri učitavanju nastavnika:', err)
       });
     } else {
       this.programForm.reset();
     }
-  } 
+  }
 
   ucitajFakultete(): void {
     this.fakultetService.getAll().subscribe({

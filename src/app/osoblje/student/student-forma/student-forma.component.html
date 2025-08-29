@@ -2,18 +2,7 @@
   <p class="subtitle">Dodaj studenta</p>
   <form [formGroup]="studentForm" (ngSubmit)="kreiraj()">
 
-    <div class="form-group">
-      <label for="email">Email korisničkog naloga</label>
-      <input
-        id="email"
-        type="email"
-        formControlName="email"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': isInvalid('email') }">
-      <div *ngIf="isInvalid('email')" class="invalid-feedback">
-        Unesite validan email korisnika.
-      </div>
-    </div>
+    <app-korisnik-forma [korisnikForm]="korisnikForm"></app-korisnik-forma>
 
     <div class="form-group">
       <label for="jmbg">JMBG</label>
@@ -42,6 +31,58 @@
     </div>
 
     <app-adresa-forma [adresaForm]="adresaFormGroup"></app-adresa-forma>
+
+    <div class="form-group">
+      <label for="program">Studijski program</label>
+      <input
+        id="program"
+        type="text"
+        formControlName="program"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('program') }">
+      <div *ngIf="isInvalid('program')" class="invalid-feedback">
+        Studijski program je obavezan.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="godina">Godina studija</label>
+      <input
+        id="godina"
+        type="text"
+        formControlName="godina"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('godina') }">
+      <div *ngIf="isInvalid('godina')" class="invalid-feedback">
+        Godina studija je obavezna.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="brojIndeksa">Broj indeksa</label>
+      <input
+        id="brojIndeksa"
+        type="text"
+        formControlName="brojIndeksa"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('brojIndeksa') }">
+      <div *ngIf="isInvalid('brojIndeksa')" class="invalid-feedback">
+        Broj indeksa je obavezan.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="datumUpisa">Datum upisa</label>
+      <input
+        id="datumUpisa"
+        type="date"
+        formControlName="datumUpisa"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('datumUpisa') }">
+      <div *ngIf="isInvalid('datumUpisa')" class="invalid-feedback">
+        Datum upisa je obavezan.
+      </div>
+    </div>
 
     <div class="form-group mt-3">
       <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">

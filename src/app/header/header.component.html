@@ -61,12 +61,14 @@
                 <a class="navbar-link">Fakultet</a>
                 <div class="navbar-dropdown">
                     <div class="navbar-item has-dropdown is-hoverable" *ngFor="let fakultet of fakulteti">
-                      <a class="navbar-link">{{ fakultet.naziv }}</a>
+                      <a class="navbar-link" [routerLink]="['/fakulteti', fakultet.id]">{{ fakultet.naziv }}</a>
                       <div class="navbar-dropdown">
-                        <a class="navbar-item" *ngFor="let program of fakultet.programi"
-                          [routerLink]="['/programi', program.id]">
-                          {{ program.naziv }}
-                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                          <a class="navbar-item" *ngFor="let program of fakultet.programi"
+                            [routerLink]="['/studijskiProgrami', program.id]">
+                            {{ program.naziv }}
+                          </a>
+                        </div>
                       </div>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 export interface StudentNaGodini {
-    id: number;
-    godina: number;
+    id?: number;
+    brojIndeksa: String;
+    datumUpisa: Date;
+    godina: Date;
 }

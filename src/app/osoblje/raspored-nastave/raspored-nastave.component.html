@@ -1,1 +1,120 @@
-<p>raspored-nastave works!</p>
+<div class="raspored-nastave-forma-container">
+    <form class="row" [formGroup]="rasporedNastaveForm" (ngSubmit)="kreiraj()">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Studijski program</mat-label>
+                        <mat-select formControlName="program">
+                            <mat-option *ngFor="let program of programi" [value]="program.naziv">
+                                {{ program.naziv }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Godina studija</mat-label>
+                        <mat-select formControlName="godinaStudija">
+                            <mat-option value="prvaGodina">Prva godina </mat-option>
+                            <mat-option value="drugaGodina">Druga godina </mat-option>
+                            <mat-option value="trecaGodina">Treca godina </mat-option>
+                            <mat-option value="cetvrtaGodina">Cetvrta godina </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <!-- time table -->
+        <div class="col-12 table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Dan</th>
+                        <th scope="col" *ngFor="let l of [1,2,3,4,5]">{{l}}</th>
+                    </tr>
+                </thead>
+                <tbody formGroupName="timeTable">
+                    <tr formGroupName="ponedeljak">
+                        <th scope="row">Ponedeljak</th>
+                        <td *ngFor="let s of [1,2,3,4,5]; index as i">
+                            <mat-form-field appearance="fill" class="compact-select">                                
+                                <mat-label>Izaberite predmet</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let predmet of predmeti" [value]="predmet.naziv">
+                                        {{ predmet.naziv }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="utorak">
+                        <th scope="row">Utorak</th>
+                        <td *ngFor="let s of [1,2,3,4,5]; index as i">
+                            <mat-form-field appearance="fill" class="compact-select">
+                                <mat-label>Izaberite predmet</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let predmet of predmeti" [value]="predmet.naziv">
+                                        {{ predmet.naziv }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="srijeda">
+                        <th scope="row">Srijeda</th>
+                        <td *ngFor="let s of [1,2,3,4,5]; index as i">
+                            <mat-form-field appearance="fill" class="compact-select">
+                                <mat-label>Izaberite predmet</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let predmet of predmeti" [value]="predmet.naziv">
+                                        {{ predmet.naziv }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="cetvrtak">
+                        <th scope="row">Četvrtak</th>
+                        <td *ngFor="let s of [1,2,3,4,5]; index as i">
+                            <mat-form-field appearance="fill" class="compact-select">
+                                <mat-label>Izaberite predmet</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let predmet of predmeti" [value]="predmet.naziv">
+                                        {{ predmet.naziv }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="petak">
+                        <th scope="row">Petak</th>
+                        <td *ngFor="let s of [1,2,3,4,5]; index as i">
+                            <mat-form-field appearance="fill" class="compact-select">
+                                <mat-label>Izaberite predmet</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let predmet of predmeti" [value]="predmet.naziv">
+                                        {{ predmet.naziv }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end flex-wrap">
+            <div>
+                <a class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                    <span class="h6">&#10006; </span>
+                    Otkaži
+                </a>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow" [disabled]="rasporedNastaveForm.invalid">
+                    Kreiraj
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
