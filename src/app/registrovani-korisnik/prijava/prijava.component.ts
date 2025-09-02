@@ -50,10 +50,11 @@ export class PrijavaComponent {
             this.router.navigate(['/univerzitet']);
           }
         },
-        error: (err) => console.error("Greske prilikom prijave: ", err)
+        error: (err) => {
+          alert("Neispravno korisničko ime ili lozinka.");   
+          console.error("Greske prilikom prijave: ", err); 
+        }
       });
-    } else {
-      alert("Neispravno korisničko ime ili lozinka.");
     }
   }
 

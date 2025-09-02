@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { AdresaFormaComponent } from '../../../admin/adresa-forma/adresa-forma.component';
 import { OsobljeService } from '../../../services/osoblje.service';
-import { Student } from '../../../model/student';
-import { StudentNaGodini } from '../../../model/studentNaGodini';
 import { KorisnikFormaComponent } from '../../../registrovani-korisnik/korisnik-forma/korisnik-forma.component';
 
 @Component({

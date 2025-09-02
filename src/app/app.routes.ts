@@ -77,30 +77,3 @@ export const routes: Routes = [
   { path: 'homepage', component: HomepageComponent },
 ];
 
-
-// export const routes: Routes = [
-//     { path: '', redirectTo: 'univerzitet', pathMatch: 'full' },
-//     { path: 'prijava', component: PrijavaComponent },
-//     { path: 'registracija', component: RegistracijaComponent},
-//     { path: 'izmeni', component: IzmenaComponent },
-//     { path: 'univerzitet', component: UniverzitetComponent },
-//     { 
-//         path: 'admin-dashboard', component: AdminDashboardComponent,
-//         children: [
-//             { path: '', redirectTo: 'aktivacija', pathMatch: 'full' },
-//         ],
-//         data: { requiredRoles: ["ROLE_ADMIN"] }, canActivate: [authGuard]
-//     },
-//     { 
-//         path: 'student-dashboard', component: StudentDashboardComponent,
-//         children: [
-//             { path: '', redirectTo: 'pregled', pathMatch: 'full' },
-//             { path: 'pregled', component: StudentPregledComponent },
-//             { path: 'prijava', component: StudentPrijavaComponent },
-//             { path: 'istorija', component: StudentIstorijaComponent },
-//             { path: 'obavestenja', component: StudentObavestenjeComponent },
-//         ],
-//         data: { requiredRoles: ["ROLE_STUDENT"] }, canActivate: [authGuard]
-//     },
-//    { path: 'homepage', component: HomepageComponent },
-

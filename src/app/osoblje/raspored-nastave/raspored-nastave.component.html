@@ -18,8 +18,8 @@
                         <mat-select formControlName="godinaStudija">
                             <mat-option value="prvaGodina">Prva godina </mat-option>
                             <mat-option value="drugaGodina">Druga godina </mat-option>
-                            <mat-option value="trecaGodina">Treca godina </mat-option>
-                            <mat-option value="cetvrtaGodina">Cetvrta godina </mat-option>
+                            <mat-option value="trecaGodina">Treća godina </mat-option>
+                            <mat-option value="cetvrtaGodina">Četvrta godina </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -105,15 +105,14 @@
         </div>
         <div class="d-flex justify-content-end flex-wrap">
             <div>
+                <button class="btn btn-primary btn-sm rounded shadow" [disabled]="rasporedNastaveForm.invalid">
+                    Kreiraj
+                </button>
+
                 <a class="btn bg-danger text-white btn-sm me-3 rounded shadow">
                     <span class="h6">&#10006; </span>
                     Otkaži
                 </a>
-            </div>
-            <div>
-                <button class="btn btn-primary btn-sm rounded shadow" [disabled]="rasporedNastaveForm.invalid">
-                    Kreiraj
-                </button>
             </div>
         </div>
     </form>

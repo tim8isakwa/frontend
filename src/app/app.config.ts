@@ -1,25 +1,25 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 
+import { routes } from './app.routes';
+
 export function tokenGetter() {
-  return localStorage.getItem('jwtToken'); 
+  return localStorage.getItem("jwtToken");
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
-  provideRouter(routes), 
-  provideHttpClient(),
-  importProvidersFrom(
-    JwtModule.forRoot({ 
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(HttpClientModule),
+    importProvidersFrom(JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:8080'], 
+        allowedDomains: ["localhost:8080"],
         disallowedRoutes: []
       }
-    })
-  )]
+    }))
+  ]
 };

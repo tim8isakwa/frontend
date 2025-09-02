@@ -20,7 +20,6 @@ export class IzmenaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
     private authService: AuthService
   ) {
     this.izmeniForm = this.fb.group({
@@ -36,10 +35,21 @@ export class IzmenaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.korisnikId = Number(this.route.snapshot.paramMap.get('id'));
+    const loggedUserId = this.authService.getLoggedUserId();
+    if (loggedUserId) {
+      this.korisnikId = loggedUserId;
+    }
 
-    this.authService.findById(this.korisnikId).subscribe(korisnik => {
-      this.izmeniForm.patchValue(korisnik);
+    this.authService.getLoggedUser().subscribe(korisnik => {
+      console.log('API response for user:', korisnik); // Log the response
+      
+      if (korisnik) {
+        this.izmeniForm.get('korisnik')?.patchValue({
+          korisnickoIme: korisnik.korisnickoIme,
+          email: korisnik.email,
+          lozinka: ''
+        });
+      }
     });
   }
 
@@ -71,7 +81,10 @@ export class IzmenaComponent implements OnInit {
     const confirmation = confirm("Da li ste sigurni da biste izbrisali nalog? ");
     if (confirmation) {
       this.authService.delete(this.korisnikId).subscribe({
-        next: () => alert("Nalog je uspešno izbrisan."),
+        next: () => {
+          alert("Nalog je uspešno izbrisan.");
+          this.router.navigate(['/univerzitet']);
+        },
         error: err => console.error("Greška pri brisanju: ", err)
       })
     }

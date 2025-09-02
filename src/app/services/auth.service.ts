@@ -33,15 +33,15 @@ export class AuthService {
   }
 
   update(id: number, korisnikZaIzmenu: RegistrovaniKorisnik): Observable<string> {
-    return this.http.put<any>(`${this.apiUrl}${id}`, korisnikZaIzmenu)
+    return this.http.put<any>(`${this.apiUrl}/${id}`, korisnikZaIzmenu)
       .pipe(
         map(response => response.token),
         tap(token => this.saveToken(token))
       );
   }
 
-  delete(id: number): Observable<void> {
-      return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  delete(id: number): Observable<string> {
+      return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
 
   findById(id: number): Observable<RegistrovaniKorisnik> {
@@ -77,6 +77,11 @@ export class AuthService {
 
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken?.id || null;
+  }
+
+  getLoggedUser(): Observable<RegistrovaniKorisnik> {
+    const userId = this.getLoggedUserId();
+    return this.findById(userId);
   }
 
   hasRole(uloge: string[]): boolean {

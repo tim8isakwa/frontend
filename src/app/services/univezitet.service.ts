@@ -21,7 +21,6 @@ export class UniverzitetService {
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
-    console.log('Auth token:', token);
 
     return headers;
   }
