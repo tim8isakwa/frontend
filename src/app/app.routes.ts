@@ -25,6 +25,7 @@ import { NastavnikFormaComponent } from './admin/nastavnik/nastavnik-forma/nasta
 import { OsobljeFormaComponent } from './admin/osoblje/osoblje-forma/osoblje-forma.component';
 import { RasporedNastaveComponent } from './osoblje/raspored-nastave/raspored-nastave.component';
 import { RasporedIspitaComponent } from './osoblje/raspored-ispita/raspored-ispita.component';
+import { ObavestenjeFormaComponent } from './osoblje/obavestenje/obavestenje-forma/obavestenje-forma.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'univerzitet', pathMatch: 'full' },
@@ -70,6 +71,7 @@ export const routes: Routes = [
         { path: 'student-tabela', component: StudentTabelaComponent },
         { path: 'raspored-nastave', component: RasporedNastaveComponent },
         { path: 'raspored-ispita', component: RasporedIspitaComponent },
+        { path: 'obavestenje-forma', component: ObavestenjeFormaComponent },
     ],
     data: { requiredRoles: ["ROLE_OSOBLJE"] }, canActivate: [authGuard]
   },

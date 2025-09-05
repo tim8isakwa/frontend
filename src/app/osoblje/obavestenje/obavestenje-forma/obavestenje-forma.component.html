@@ -1,0 +1,33 @@
+<div class="obavestenje-forma-container">
+    <p class="subtitle">Kreiraj obavestenje</p>
+    <form [formGroup]="obavestenjeForm" ngSubmit="kreiraj()">
+
+    <div class="form-group">
+      <label for="naslov">Naslov</label>
+      <input
+        id="naslov"
+        type="text"
+        formControlName="naslov"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isInvalid('naslov') }">
+      <div *ngIf="isInvalid('naslov')" class="invalid-feedback">
+        Naslov je obavezan.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Sadrzaj">Sadrzaj</label>
+      <textarea
+        id="sadrzaj"
+        formControlName="sadrzaj"
+        class="form-control"
+        rows="3"></textarea>
+    </div>
+
+    <div class="form-group"> 
+      <button type="submit" class="btn" [disabled]="obavestenjeForm.invalid">
+        Sačuvaj
+      </button>
+    </div>
+    </form>
+</div>

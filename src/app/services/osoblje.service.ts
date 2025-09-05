@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Student } from '../model/student';
 import { Observable } from 'rxjs';
+import { Obavestenje } from '../model/obavestenje';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,12 @@ export class OsobljeService {
 
   deleteStudent(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  createObavestenje(obavestenje: Obavestenje): Observable<Obavestenje> {
+    return this.http.post<Obavestenje>(`${this.apiUrl}/kreiraj`, obavestenje, {
       headers: this.getHeaders()
     });
   }
